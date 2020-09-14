@@ -6,7 +6,7 @@ https://woodchuck-attendance.herokuapp.com
 - deployed on Heroku
 
 ### Steps for usage
-1. Access the logging reports on BBC
+1. Access the logging reports on Blackboard Scheduler
 2. Click _Printable_, which should open a new tab with the full report
 3. Right click on the page and select _Save As..._
 4. Be sure to select _Webpage Complete_ as the File Type, and save the file somewhere easily accessible
