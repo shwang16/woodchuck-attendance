@@ -1,1 +1,1 @@
-web: gunicorn app:teacher
+web: gunicorn teacher:app
