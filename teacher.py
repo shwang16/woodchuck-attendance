@@ -83,6 +83,10 @@ def upload_file():
             shour = int(second.split(':')[0])
             smin = int(second.split(':')[1].split(' ')[0])
             sm = second.split(' ')[1]
+            if fhour == 12:
+                fm = "AM" if fm == "PM" else "AM"
+            if shour == 12:
+                sm = "AM" if sm == "PM" else "AM"
             if fm == "AM" and sm == "PM":
                 return True
             elif fm == "PM" and sm == "AM":
