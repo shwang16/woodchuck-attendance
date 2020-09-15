@@ -1,22 +1,88 @@
 <!doctype html>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
 <style>
-  
+  body {
+    font-family: 'Comfortaa';
+  }
+  #upload{
+    border-radius: 10px;
+    border-color: navy;
+    border-style: solid;
+    width: 80%;
+    margin-top: 4%;
+    align-self: center;
+    text-align: center;
+    padding: 1%;
+  }
+  #report{
+    border-radius: 10px;
+    border-color: gold;
+    border-style: solid;
+    width: 85%;
+    margin-top: 2%;
+    align-self: center;
+    text-align: center;
+    padding: 1%;
+  }
+  #instruct{
+    border-radius: 10px;
+    border-color: navy;
+    border-style: solid;
+    width: 90%;
+    margin-top: 2%;
+    align-self: center;
+    padding: 1%;
+  }
+  #err{
+    color: red;
+    font-size: 12px;
+  }
+  li{
+    font-size: 10px;
+  }
 </style>
 <html>
   <head>
     <title>Woodchuck Attendance</title>
   </head>
   <body>
-    <h1>File Upload</h1>
-    <form method="POST" action="" enctype="multipart/form-data">
-      <p><input type="file" name="file"></p>
-      <p><input type="submit" value="Submit"></p>
-    </form>
+    <div class="row">
+      <div class="col-md-7">
+        <div class='container' id="instruct">
+          <h5>Instructions for use:</h5>
+          <ol>
+            <li>This application is created specifically for the 3rd grade staff at Weyanoke. Anyone else is in the wrong place.</li>
+            <li>Access a specific day's logging report on Blackboard Scheduler.</li>
+            <li>Click <i>Printable</i>, which should open a new tab with the full report.</li>
+            <li>Right click on the page and select <i>Save As...</i></li>
+            <li>Be sure to select <i>Webpage, Complete</i> as the File Type, and save the file somewhere easily accessible.</li>
+            <li>Upload the file in the box to the right, and click submit.</li>
+            <li>If all goes well, a table should appear below with a list of students and which sections of the day they were present based on the report.</li>
+            <li>If you see red text in the box to your right, or the table has incomprehensible data, your file may have been incorrect.</li>
+            <li>Any other questions, comments, or feedback can be directed towards <u>sw2bh@virginia.edu</u></li>
+          </ol>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class='container' id="upload">
+          <h5>File Upload</h5>
+          {% if error != "" %}
+          <p id="err">{{error}}</p>
+          {% endif %}
+          <form method="POST" action="" enctype="multipart/form-data">
+            <p><input type="file" name="file"></p>
+            <p><input type="submit" value="Submit"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    
   </body>
 
-  {% if data != {} %}
-  <div id="report">
+  {% if data != {} and error == "" %}
+  <div class="container" id="report">
     <h3>{{data.report}}</h3>
     Date: {{data.date}} {{data.starttime}} - {{data.endtime}}
     <br>
@@ -32,11 +98,35 @@
       {% for item in data.students %}
       <tr>
         <td>{{item[0]}}</td>
+        {% if item[1] == "A" %}
+        <td style="background-color:pink">{{item[1]}}</td>
+        {% else %}
         <td>{{item[1]}}</td>
+        {% endif %}
+
+        {% if item[2] == "A" %}
+        <td style="background-color:pink">{{item[2]}}</td>
+        {% else %}
         <td>{{item[2]}}</td>
+        {% endif %}
+
+        {% if item[3] == "A" %}
+        <td style="background-color:pink">{{item[3]}}</td>
+        {% else %}
         <td>{{item[3]}}</td>
+        {% endif %}
+
+        {% if item[4] == "A" %}
+        <td style="background-color:pink">{{item[4]}}</td>
+        {% else %}
         <td>{{item[4]}}</td>
+        {% endif %}
+
+        {% if item[5] == "A" %}
+        <td style="background-color:pink">{{item[5]}}</td>
+        {% else %}
         <td>{{item[5]}}</td>
+        {% endif %}
       </tr>
       {% endfor %}
     </table>
